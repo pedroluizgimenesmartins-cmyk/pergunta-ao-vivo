@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Responder</title><link rel="stylesheet" href="/app.css"></head>
+<body class="student"><div class="card">
+<div class="logo">PERGUNTA <span>AO VIVO</span></div><div class="tag">SUA RESPOSTA</div>
+<h1 id="q">Carregando...</h1>
+<form id="form"><input id="a" maxlength="80" placeholder="Digite sua resposta" autofocus><button>ENVIAR</button></form>
+<div id="msg"></div></div>
+<script>
+const $=id=>document.getElementById(id);
+async function load(){let d=await fetch("/api/state").then(r=>r.json());$("q").textContent=d.question;if(!d.active){$("form").style.display="none";$("msg").textContent="Esta pergunta está encerrada."}}
+load();
+$("form").onsubmit=async e=>{e.preventDefault();let a=$("a").value.trim();if(!a)return;let r=await fetch("/api/answer",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({answer:a})});if(r.ok){$("a").value="";$("msg").textContent="✓ Resposta enviada!"}else{$("msg").textContent="Não foi possível enviar."}}
+</script></body></html>
