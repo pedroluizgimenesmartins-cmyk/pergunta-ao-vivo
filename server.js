@@ -6,7 +6,7 @@ const {Server}=require("socket.io");
 
 const app=express(), server=http.createServer(app), io=new Server(server);
 app.use(express.json());
-app.use(express.static(path.join(__dirname,"public")));
+app.use(express.static(__dirname));
 
 let state={
   question:"Qual palavra representa melhor uma boa liderança?",
