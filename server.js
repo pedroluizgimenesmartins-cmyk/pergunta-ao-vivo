@@ -28,7 +28,9 @@ function data(){
   return {question:state.question,active:state.active,total:state.answers.length,words};
 }
 function broadcast(){io.emit("update",data())}
-
+app.get("/aluno.html",(req,res)=>{
+  res.sendFile(path.join(__dirname,"aluno.html"));
+});
 app.get("/api/state",(req,res)=>res.json(data()));
 app.get("/api/qr",async(req,res)=>{
   const host=String(req.query.host||"").replace(/\/$/,"");
