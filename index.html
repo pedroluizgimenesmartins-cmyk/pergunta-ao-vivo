@@ -25,7 +25,8 @@
 <script src="/socket.io/socket.io.js"></script><script>
 const $=id=>document.getElementById(id),socket=io();
 function render(d){
- $("question").textContent=d.question;$("total").textContent=d.total;
+ if(d.question) $("question").textContent=d.question;
+ $("total").textContent=d.total;
  $("status").textContent=d.active?"● AO VIVO":"● ENCERRADA";
  $("toggle").textContent=d.active?"ENCERRAR RESPOSTAS":"REABRIR RESPOSTAS";
  $("cloud").innerHTML="";
