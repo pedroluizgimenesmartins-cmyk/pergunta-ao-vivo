@@ -7,9 +7,9 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
-  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   background: #0b1020;
-  color: #ffffff;
+  color: #fff;
   overflow: hidden;
 }
 
@@ -17,32 +17,23 @@ body {
   min-height: 100vh;
 }
 
-/* Layout principal */
 .teacher {
   width: 100vw;
   height: 100vh;
-  min-height: 100vh;
   display: grid;
   grid-template-columns: 320px 1fr;
   background:
-    radial-gradient(circle at 75% 30%, rgba(59, 130, 246, 0.18), transparent 35%),
-    linear-gradient(135deg, #0b1020 0%, #111827 100%);
+    radial-gradient(circle at 75% 30%, rgba(59,130,246,.18), transparent 35%),
+    linear-gradient(135deg,#0b1020 0%,#111827 100%);
 }
 
-/* Painel esquerdo */
 aside {
   min-height: 100vh;
   padding: 28px 22px;
-  background: rgba(8, 13, 28, 0.96);
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 8px 0 30px rgba(0, 0, 0, 0.25);
+  background: rgba(8,13,28,.96);
+  border-right: 1px solid rgba(255,255,255,.12);
+  box-shadow: 8px 0 30px rgba(0,0,0,.25);
   z-index: 10;
-}
-
-aside h1,
-aside h2,
-aside h3 {
-  margin-top: 0;
 }
 
 aside input,
@@ -51,136 +42,132 @@ aside select {
   width: 100%;
   padding: 12px;
   margin: 6px 0 12px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255,255,255,.18);
   border-radius: 8px;
-  background: #ffffff;
+  background: #fff;
   color: #111827;
 }
 
-/* Área principal da apresentação */
 main {
   position: relative;
   min-width: 0;
   min-height: 100vh;
+  padding: 35px 50px;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+}
+
+.top {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 60px;
-  text-align: center;
+  width: 100%;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
 }
 
-/* Pergunta */
-h1,
-h2,
-h3,
-p {
-  position: relative;
-  z-index: 2;
-}
-
-main h1 {
-  width: min(1100px, 90%);
-  margin: 0 auto 35px;
-  font-size: clamp(32px, 4vw, 64px);
+#question {
+  flex: 0 0 auto;
+  width: min(1100px, 100%);
+  margin: 28px auto 20px;
+  font-size: clamp(32px, 4vw, 58px);
   line-height: 1.12;
   font-weight: 700;
-  letter-spacing: -1px;
 }
 
-/* Textos */
-main p {
-  font-size: clamp(20px, 2vw, 30px);
-  line-height: 1.4;
+#cloud {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 10px auto 0;
+  padding: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 18px 28px;
+  overflow: hidden;
 }
 
-/* Botões */
+#cloud .word {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 0;
+  padding: 10px 18px;
+  line-height: 1.05;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 14px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 8px 24px rgba(0,0,0,.20);
+  transition: transform .2s ease;
+}
+
+#cloud .word:hover {
+  transform: translateY(-3px);
+}
+
+#cloud .word.winner {
+  background: rgba(37,99,235,.28);
+  border-color: rgba(96,165,250,.45);
+}
+
+#cloud .word small {
+  margin-left: 8px;
+  font-size: .38em;
+  opacity: .75;
+}
+
+#empty {
+  flex: 0 0 auto;
+  padding: 15px;
+  opacity: .7;
+  font-size: 18px;
+}
+
 button {
-  appearance: none;
   border: 0;
   border-radius: 10px;
   padding: 12px 20px;
   margin: 6px;
   background: #2563eb;
-  color: #ffffff;
+  color: #fff;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s ease;
 }
 
 button:hover {
   background: #3b82f6;
-  transform: translateY(-1px);
 }
 
-button:active {
-  transform: translateY(0);
-}
-
-/* Formulários */
-input,
-textarea {
-  font-family: inherit;
-}
-
-input[type="text"],
-input[type="number"],
-textarea {
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  padding: 10px 12px;
-}
-
-/* QR Code */
-img {
-  max-width: 100%;
-}
-
+.qr img,
 aside img {
   display: block;
-  width: min(230px, 100%);
+  width: min(210px,100%);
   height: auto;
   margin: 20px auto;
   object-fit: contain;
 }
 
-/* Evita que QR/imagens cubram a apresentação */
-main img {
-  position: relative;
-  z-index: 1;
-  max-height: 45vh;
-  object-fit: contain;
-}
-
-/* Links */
 a {
   color: #60a5fa;
 }
 
-/* Área de respostas */
-ul,
-ol {
-  position: relative;
-  z-index: 2;
-}
-
-li {
-  margin: 8px 0;
-}
-
-/* Responsividade */
 @media (max-width: 900px) {
   .teacher {
     grid-template-columns: 250px 1fr;
   }
 
-  aside {
-    padding: 20px 15px;
-  }
-
   main {
-    padding: 30px;
+    padding: 25px;
   }
 }
 
@@ -192,22 +179,22 @@ li {
 
   .teacher {
     display: block;
-    min-height: 100vh;
   }
 
   aside {
     min-height: auto;
-    border-right: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   main {
     min-height: 70vh;
-    padding: 30px 20px;
+    padding: 25px 15px;
   }
 
-  main h1 {
-    width: 100%;
+  #question {
     font-size: 32px;
+  }
+
+  #cloud {
+    padding: 10px;
   }
 }
